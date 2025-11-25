@@ -1,12 +1,10 @@
 using UnityEngine;
-using TMPro; // Si usas TextMeshPro
-// using UnityEngine.UI; // Si usas UI Text normal
+using TMPro; 
 
 public class BulletCounterUI : MonoBehaviour
 {
     [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI bulletCountText; // Para TextMeshPro
-    // [SerializeField] private Text bulletCountText; // Para UI Text normal
+    [SerializeField] private TextMeshProUGUI bulletCountText; 
     
     [Header("Display Settings")]
     [SerializeField] private string prefix = "Balas: ";
@@ -32,12 +30,10 @@ public class BulletCounterUI : MonoBehaviour
     
     private void UpdateBulletCount()
     {
-        // Decidir qué contador usar
         int bulletCount = showOnlyVisible 
             ? BulletPool.Instance.VisibleBulletsCount 
             : BulletPool.Instance.ActiveBulletsCount;
         
-        // Actualizar texto
         if (bulletCountText != null)
         {
             if (showPoolInfo)
@@ -51,7 +47,6 @@ public class BulletCounterUI : MonoBehaviour
                 bulletCountText.text = $"{prefix}{bulletCount}";
             }
             
-            // Cambiar color según cantidad
             UpdateTextColor(bulletCount);
         }
     }
@@ -72,7 +67,6 @@ public class BulletCounterUI : MonoBehaviour
         }
     }
     
-    // Método público para cambiar el prefijo desde otros scripts
     public void SetPrefix(string newPrefix)
     {
         prefix = newPrefix;

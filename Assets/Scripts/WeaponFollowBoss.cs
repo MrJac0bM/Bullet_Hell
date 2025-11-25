@@ -21,7 +21,6 @@ public class WeaponFollowBoss : MonoBehaviour
     {
         if (boss == null) return;
 
-        // Posición exacta del jefe + offset
         transform.position = boss.position + offset;
     }
 }

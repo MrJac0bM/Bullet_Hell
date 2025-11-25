@@ -50,7 +50,6 @@ public static class ShotSystem
         }
     }
     
-    // RADIAL: Círculo completo de balas
     private static void RadialShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         float angleStep = 360f / setting.NumberOfBullets;
@@ -63,7 +62,6 @@ public static class ShotSystem
         }
     }
     
-    // SPIRAL: Va girando en espiral
     private static void SpiralShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         float angle = rotationOffset * Mathf.Deg2Rad;
@@ -72,13 +70,11 @@ public static class ShotSystem
         Shot(origin, direction * setting.BulletSpeed, setting.BulletColor);
     }
     
-    // STREAM: Disparo continuo en una dirección
     private static void StreamShot(Vector2 origin, Vector2 aimDirection, ShotSetting setting)
     {
         Shot(origin, aimDirection.normalized * setting.BulletSpeed, setting.BulletColor);
     }
     
-    // WAVE: Onda sinusoidal
     private static void WaveShot(Vector2 origin, Vector2 aimDirection, ShotSetting setting, float timeOffset)
     {
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x);
@@ -87,7 +83,6 @@ public static class ShotSystem
         float waveOffset = Mathf.Sin(timeOffset * setting.WaveFrequency) * setting.WaveAmplitude;
         Vector2 waveOrigin = origin + perpDirection * waveOffset;
         
-        // Rota 90 grados la dirección
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         angle += 90f;
         float rotatedAngle = angle * Mathf.Deg2Rad;
@@ -96,7 +91,6 @@ public static class ShotSystem
         Shot(waveOrigin, rotatedDirection.normalized * setting.BulletSpeed, setting.BulletColor);
     }
     
-    // CROSS: Cruz de 4 direcciones
     private static void CrossShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         float[] angles = { 0f, 90f, 180f, 270f };
@@ -109,7 +103,6 @@ public static class ShotSystem
         }
     }
     
-    // STAR: Estrella con puntas largas y cortas
     private static void StarShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         int points = Mathf.Max(3, setting.NumberOfBullets);
@@ -127,7 +120,6 @@ public static class ShotSystem
         }
     }
     
-    // CONE: Cono direccional
     private static void ConeShot(Vector2 origin, Vector2 aimDirection, ShotSetting setting, float rotationOffset)
     {
         float baseAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
@@ -142,7 +134,6 @@ public static class ShotSystem
         }
     }
     
-    // RING: Anillo completo
     private static void RingShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         float angleStep = 360f / setting.NumberOfBullets;
@@ -155,7 +146,6 @@ public static class ShotSystem
         }
     }
     
-    // FLOWER: Patrón de pétalos
     private static void FlowerShot(Vector2 origin, ShotSetting setting, float rotationOffset)
     {
         int petals = Mathf.Max(3, setting.NumberOfBullets / 3);
@@ -176,16 +166,13 @@ public static class ShotSystem
         }
     }
     
-    // AIMED: Disparo dirigido directamente al jugador
     private static void AimedShot(Vector2 origin, Vector2 targetDirection, ShotSetting setting)
     {
-        // Busca al jugador
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             Vector2 directionToPlayer = ((Vector2)player.transform.position - origin).normalized;
             
-            // Rota 90 grados a la derecha
             float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
             angle += 90f;
             float rotatedAngle = angle * Mathf.Deg2Rad;
@@ -195,10 +182,8 @@ public static class ShotSystem
         }
     }
 
-    // PLAYER SHOT: Disparo del jugador hacia el jefe (90 grados hacia arriba)
     private static void PlayerShotPattern(Vector2 origin, Vector2 aimDirection, ShotSetting setting)
     {
-        // Rota -90 grados (hacia arriba)
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         angle += 0f;
         float rotatedAngle = angle * Mathf.Deg2Rad;

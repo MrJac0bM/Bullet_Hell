@@ -8,7 +8,6 @@ public static class ShotAtack
         bullet.Velocity = Velocity;
     }
 
-    // ← AÑADIR parámetro rotationOffset
    public static void RadialShot(Vector2 origin, Vector2 aimDirection, float bulletSpeed, RadialShotSetting radialShotSetting, float rotationOffset = 0f) // ← SIN "h"
 {
     float angleStep = 360f / radialShotSetting.NumberOfBullets;

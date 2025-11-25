@@ -7,7 +7,7 @@ public class AttackPhase
     public string phaseName = "Fase 1";
     public float duration = 5f;
     public ShotPattern[] patterns;
-    public bool simultaneous = false; // Si true, todos los patrones a la vez. Si false, uno por uno
+    public bool simultaneous = false; 
 }
 
 public class LevelAttackManager : MonoBehaviour
@@ -15,7 +15,7 @@ public class LevelAttackManager : MonoBehaviour
     [SerializeField] private AttackPhase[] phases;
     [SerializeField] private Transform shootOrigin;
     [SerializeField] private Transform target;
-    [SerializeField] private float rotationSpeedPerShot = 15f; // Qué tanto rota cada disparo
+    [SerializeField] private float rotationSpeedPerShot = 15f; 
     
     private float _elapsedTime = 0f;
     private int _currentPhaseIndex = 0;
@@ -39,7 +39,7 @@ public class LevelAttackManager : MonoBehaviour
         _currentPhaseDuration += Time.deltaTime;
         _elapsedTime += Time.deltaTime;
 
-        // Cambiar a siguiente fase si el tiempo se acabó
+       
         if (_currentPhaseDuration >= phases[_currentPhaseIndex].duration)
         {
             if (_currentPhaseIndex < phases.Length - 1)
@@ -59,12 +59,10 @@ public class LevelAttackManager : MonoBehaviour
         
         Debug.Log($"=== {phase.phaseName} INICIADA (Duración: {phase.duration}s) ===");
 
-        // Detener corrutinas anteriores
         StopAllCoroutines();
 
         if (phase.simultaneous)
         {
-            // Todos los patrones a la vez
             _activeCoroutines = new Coroutine[phase.patterns.Length];
             for (int i = 0; i < phase.patterns.Length; i++)
             {
@@ -73,7 +71,6 @@ public class LevelAttackManager : MonoBehaviour
         }
         else
         {
-            // Patrones uno por uno
             StartCoroutine(SequentialAttack(phase.patterns));
         }
     }

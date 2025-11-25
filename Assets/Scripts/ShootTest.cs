@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShootTest : MonoBehaviour
 {
     [SerializeField] private float _shootCooldown;
-    [SerializeField] private RadialShotSetting _radialShootSetting; // ← SIN "h"
+    [SerializeField] private RadialShotSetting _radialShootSetting; 
     [SerializeField] private float _rotationPerShot = 15f;
     
     private float _shootCooldownTimer = 0f;

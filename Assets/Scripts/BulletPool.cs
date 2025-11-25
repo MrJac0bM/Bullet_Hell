@@ -22,18 +22,15 @@ public class BulletPool : MonoBehaviour
     
     [Header("Camera Settings")]
     [SerializeField] private Camera targetCamera;
-    [SerializeField] private float marginMultiplier = 1.2f; // Margen extra para contar balas cerca del borde
-
+    [SerializeField] private float marginMultiplier = 1.2f; 
     private List<Bullet> _bulletPool = new List<Bullet>();
     
-    // ===== CONTADORES =====
     private int _activeBulletsCount = 0;      // Total de balas activas
     private int _visibleBulletsCount = 0;     // Solo balas visibles en cámara
     
     public int ActiveBulletsCount => _activeBulletsCount;
     public int VisibleBulletsCount => _visibleBulletsCount;
-    
-    // Límites de la cámara en world space
+   
     private Vector2 _cameraMin;
     private Vector2 _cameraMax;
 
@@ -47,7 +44,6 @@ public class BulletPool : MonoBehaviour
         
         _instance = this;
         
-        // Obtener cámara principal si no está asignada
         if (targetCamera == null)
         {
             targetCamera = Camera.main;
@@ -89,7 +85,6 @@ public class BulletPool : MonoBehaviour
         return _bulletPool[_bulletPool.Count - 1];
     }
     
-    // ===== ACTUALIZAR LÍMITES DE CÁMARA =====
     private void UpdateCameraBounds()
     {
         if (targetCamera == null) return;
@@ -103,7 +98,6 @@ public class BulletPool : MonoBehaviour
         _cameraMax = new Vector2(cameraPos.x + width / 2f, cameraPos.y + height / 2f);
     }
     
-    // ===== CONTAR BALAS CADA FRAME =====
     private void LateUpdate()
     {
         UpdateCameraBounds();
@@ -121,7 +115,7 @@ public class BulletPool : MonoBehaviour
             {
                 _activeBulletsCount++;
                 
-                // Verificar si está dentro de los límites de la cámara
+                
                 Vector2 pos = bullet.transform.position;
                 if (IsInsideCameraBounds(pos))
                 {
@@ -137,13 +131,11 @@ public class BulletPool : MonoBehaviour
                position.y >= _cameraMin.y && position.y <= _cameraMax.y;
     }
     
-    // Método para obtener el total de balas en el pool
     public int GetTotalPoolSize()
     {
         return _bulletPool.Count;
     }
     
-    // Método para debugging
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -154,7 +146,6 @@ public class BulletPool : MonoBehaviour
         }
     }
     
-    // Método para dibujar el área de la cámara (debugging)
     private void OnDrawGizmos()
     {
         if (targetCamera == null) return;

@@ -4,7 +4,7 @@ public class PlayerShipController : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float maxSpeed = 15f;
-    [SerializeField] private float slowdownMultiplier = 0.5f; // 50% más lento
+    [SerializeField] private float slowdownMultiplier = 0.5f; 
     
     private Vector2 _velocity = Vector2.zero;
 
@@ -29,7 +29,6 @@ public class PlayerShipController : MonoBehaviour
         Vector2 direction = (boss.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
-        // Rota 90 grados hacia arriba
         angle += 90f;
         
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -55,7 +54,6 @@ public class PlayerShipController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             _input.x += 1;
 
-        // Si presiona Shift, ralentiza TODO (balas, jefe, etc)
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             Time.timeScale = slowdownMultiplier;

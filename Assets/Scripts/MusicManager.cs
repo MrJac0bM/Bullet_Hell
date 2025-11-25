@@ -24,7 +24,6 @@ public class DoomMusicManager : MonoBehaviour
             return;
         }
 
-        // Fuerza que el audio se escuche
         AudioListener.volume = 1f;
         
         audioSource.clip = doomMusic;

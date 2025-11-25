@@ -9,7 +9,7 @@ public class PatternWeapon : MonoBehaviour
     [SerializeField] private Transform target;
     
     private bool _isShooting = false;
-    private float _globalRotationOffset = 0f; // ← CLAVE: offset persistente entre repeticiones
+    private float _globalRotationOffset = 0f; 
 
     private void Start()
     {
@@ -45,7 +45,6 @@ public class PatternWeapon : MonoBehaviour
             StartCoroutine(ExecutePattern(shotPattern));
         }
         
-        // Opcional: Resetear rotación con tecla R
         if (UnityEngine.InputSystem.Keyboard.current.rKey.wasPressedThisFrame)
         {
             _globalRotationOffset = 0f;
@@ -72,15 +71,12 @@ public class PatternWeapon : MonoBehaviour
                 
                 Debug.Log($"  {setting.PatternType}: {setting.NumberOfBullets} balas a {setting.BulletSpeed} vel");
                 
-                // Usar el offset global en vez de uno local
                 ShotSystem.ExecutePattern(center, aimDirection, setting, _globalRotationOffset);
                 
-                // Incrementar offset solo si el setting lo permite
                 if (setting.ContinuousRotation)
                 {
                     _globalRotationOffset += setting.RotationSpeed;
                     
-                    // Mantener el ángulo en rango [0, 360)
                     if (_globalRotationOffset >= 360f)
                         _globalRotationOffset -= 360f;
                     else if (_globalRotationOffset < 0f)
@@ -94,7 +90,6 @@ public class PatternWeapon : MonoBehaviour
         Debug.Log("=== Patrón completado ===");
         _isShooting = false;
         
-        // Si es auto-shoot, continuar sin resetear el offset
         if (autoShoot)
         {
             StartCoroutine(ExecutePattern(shotPattern));
@@ -110,13 +105,11 @@ public class PatternWeapon : MonoBehaviour
         return Vector2.up;
     }
     
-    // Método público para resetear manualmente el offset si es necesario
     public void ResetRotation()
     {
         _globalRotationOffset = 0f;
     }
     
-    // Método público para cambiar el patrón en runtime
     public void ChangePattern(ShotPattern newPattern)
     {
         if (_isShooting)

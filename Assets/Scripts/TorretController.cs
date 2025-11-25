@@ -54,7 +54,6 @@ public class TurretController : MonoBehaviour
         if (_shootTimer <= 0f && shotPattern != null)
         {
             Vector2 center = transform.position;
-            // Dispara en la dirección hacia donde está rotada la torreta
             float angle = transform.eulerAngles.z * Mathf.Deg2Rad;
             Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 

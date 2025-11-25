@@ -5,12 +5,11 @@ public class RadialShotWeapon : MonoBehaviour
 {
    [SerializeField] private RadialShotPatern shotPatern;
    [SerializeField] private bool autoShoot = true;
-   [SerializeField] private Transform shootOrigin; // ← NUEVO: punto de disparo compartido
+   [SerializeField] private Transform shootOrigin; 
    private bool _isShooting = false;
 
    private void Start()
    {
-        // Si no hay origen asignado, usar la posición de este objeto
         if (shootOrigin == null)
         {
             shootOrigin = transform;
@@ -39,7 +38,7 @@ public class RadialShotWeapon : MonoBehaviour
 
         for (int lap = 0; lap < patern.Repetitions; lap++)
         {
-            Vector2 center = shootOrigin.position; // ← Usar el origen compartido
+            Vector2 center = shootOrigin.position; 
             
             for (int i = 0; i < patern.PatternSettings.Length; i++)
             {
