@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768d6604f0216a46ad547ae22dc3464, type: 3}
+  m_Name: New Shot Pattern 1
+  m_EditorClassIdentifier: Assembly-CSharp::ShotPattern
+  patternName: New Pattern
+  Repetitions: 1
+  PatternSettings:
+  - BulletSpeed: 10
+    NumberOfBullets: 10
+    BulletColor: {r: 0.7075472, g: 0.22790468, b: 0, a: 1}
+    PatternType: 0
+    SpreadAngle: 0
+    WaveAmplitude: 0
+    WaveFrequency: 0
+    CooldownAfterShoot: 0.2
+    RotationSpeed: 6
+    ContinuousRotation: 1
+  - BulletSpeed: 5
+    NumberOfBullets: 5
+    BulletColor: {r: 0, g: 0.22655034, b: 1, a: 1}
+    PatternType: 8
+    SpreadAngle: 0
+    WaveAmplitude: 0
+    WaveFrequency: 0
+    CooldownAfterShoot: 0.38
+    RotationSpeed: 6
+    ContinuousRotation: 1
+  patternColor: {r: 1, g: 1, b: 1, a: 1}
